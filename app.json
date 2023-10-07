@@ -1,4 +1,17 @@
 {
   "name": "ReactNativeUpdate",
-  "displayName": "ReactNativeUpdate"
+  "displayName": "ReactNativeUpdate",
+  "expo": {
+    "extra": {
+      "eas": {
+        "projectId": "3ec94233-a875-49e6-9223-85d945a7e2bb"
+      }
+    },
+    "runtimeVersion": "1.0.0",
+    "updates": {
+      "url": "https://u.expo.dev/3ec94233-a875-49e6-9223-85d945a7e2bb"
+    },
+    "android": {},
+    "ios": {}
+  }
 }
