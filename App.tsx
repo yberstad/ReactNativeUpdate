@@ -5,9 +5,11 @@
  * @format
  */
 
-import React from 'react';
+import React, {useEffect} from 'react';
 import type {PropsWithChildren} from 'react';
 import {
+  AppState,
+  Image,
   SafeAreaView,
   ScrollView,
   StatusBar,
@@ -24,10 +26,17 @@ import {
   LearnMoreLinks,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
+import * as Updates from 'expo-updates';
+import {useUpdates} from 'expo-updates';
+import {UpdateMonitor} from './components';
 
 type SectionProps = PropsWithChildren<{
   title: string;
 }>;
+
+const runTypeMessage = Updates.isEmbeddedLaunch
+  ? 'This app is running from built-in code'
+  : 'This app is running an update';
 
 function Section({children, title}: SectionProps): JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
@@ -56,6 +65,13 @@ function Section({children, title}: SectionProps): JSX.Element {
 }
 
 function App(): JSX.Element {
+  const {
+    currentlyRunning,
+    isChecking,
+    isDownloading,
+    lastCheckForUpdateTimeSinceRestart,
+  } = useUpdates();
+
   const isDarkMode = useColorScheme() === 'dark';
 
   const backgroundStyle = {
@@ -76,7 +92,16 @@ function App(): JSX.Element {
           style={{
             backgroundColor: isDarkMode ? Colors.black : Colors.white,
           }}>
-          <Section title="Step One">
+          <Image
+            source={require('./images/Fingerprint.png')}
+            resizeMode={'contain'}
+          />
+          <UpdateMonitor
+            checkOnForeground={true}
+            buttonsAlwaysVisible={__DEV__}
+          />
+          <Text>{runTypeMessage}</Text>
+          <Section title="Step 4">
             Edit <Text style={styles.highlight}>App.tsx</Text> to change this
             screen and then come back to see your edits.
           </Section>

@@ -9,9 +9,13 @@
     },
     "runtimeVersion": "1.0.0",
     "updates": {
-      "url": "https://u.expo.dev/3ec94233-a875-49e6-9223-85d945a7e2bb"
+      "url": "http://proxyman.debug:3000/api/manifest",
+      "requestHeaders": {
+        "expo-channel-name": "main"
+      }
     },
     "android": {},
-    "ios": {}
+    "ios": {},
+    "owner": "ohabbers"
   }
 }
